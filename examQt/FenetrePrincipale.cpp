@@ -115,80 +115,104 @@ void FenetrePrincipale::on_ExportImageButton_clicked()
 
 void FenetrePrincipale::on_positionHautPushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (PositionY > ui->pasVariationSpinBox->value())
     {
+        // Déplacement du rectangle vers le haut selon le pas de variation
         PositionY -= ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_positionDroitePushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (PositionX + Largeur + ui->pasVariationSpinBox->value() < DroiteImage)
     {
+        // Déplacement du rectangle vers la droite selon le pas de variation
         PositionX += ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_positionBasPushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (PositionY + Hauteur + ui->pasVariationSpinBox->value() - 1 < BasImage)
     {
+        // Déplacement du rectangle vers le bas selon le pas de variation
         PositionY += ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_positionGauchePushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (PositionX > ui->pasVariationSpinBox->value() - 1)
     {
+        // Déplacement du rectangle vers la gauche selon le pas de variation
         PositionX -= ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_hauteurPlusPushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (PositionY + Hauteur + ui->pasVariationSpinBox->value() - 1 < BasImage)
     {
+        // Augmentation de la hauteur du rectangle selon le pas de variation
         Hauteur += ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_hauteurMoinsPushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (Hauteur > ui->pasVariationSpinBox->value() + 1)
     {
+        // Diminution de la hauteur du rectangle selon le pas de variation
         Hauteur -= ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_largeurPlusPushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (PositionX + Largeur + ui->pasVariationSpinBox->value() - 1 < DroiteImage)
     {
+        // Augmentation de la largeur du rectangle selon le pas de variation
         Largeur += ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
 
 void FenetrePrincipale::on_largeurMoinsPushButton_clicked()
 {
+    // Si le rectangle ne dépasse pas la zone de l'image
     if (Largeur > ui->pasVariationSpinBox->value() + 1)
     {
+        // Diminution de la largeur du rectangle selon le pas de variation
         Largeur -= ui->pasVariationSpinBox->value();
     }
+    // Mise à jour de l'interface
     update();
 }
 
