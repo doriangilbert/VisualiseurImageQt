@@ -19,7 +19,6 @@ FenetrePrincipale::~FenetrePrincipale()
 
 void FenetrePrincipale::paintEvent(QPaintEvent *event)
 {
-    // Appel à la méthode de la classe parente
     QWidget::paintEvent(event);
 
     if (CheminImage.isEmpty())
@@ -38,7 +37,13 @@ void FenetrePrincipale::paintEvent(QPaintEvent *event)
     }
 
     // Redimensionner l'image si elle dépasse la taille maximale
-    QImage scaledImage = Image.scaled(850, 550, Qt::KeepAspectRatio);
+    QImage scaledImage = Image.scaled(850, 480, Qt::KeepAspectRatio);
+
+    // On stocke la taille de l'image
+    HautImage = 0;
+    BasImage = scaledImage.height();
+    GaucheImage = 0;
+    DroiteImage = scaledImage.width();
 
     // Utiliser QPainter pour dessiner l'image sur le widget
     QPainter Painter(this);
@@ -46,95 +51,144 @@ void FenetrePrincipale::paintEvent(QPaintEvent *event)
 
     // Dessiner un rectangle autour de l'image
     Painter.setPen(Qt::red); // Définir la couleur du trait
-    Painter.drawRect(0, 0, scaledImage.width(), scaledImage.height()); // Dessiner le rectangle autour de l'image
+
+    // Premier import de l'image
+    if (Hauteur == 0 && Largeur == 0)
+    {
+        // On stocke la taille du rectangle que l'on va changer par la suite.
+        Hauteur = scaledImage.height();
+        Largeur = scaledImage.width();
+        PositionX = 0;
+        PositionY = 0;
+    }
+
+    // On dessine le rectangle.
+    Painter.drawRect(PositionX, PositionY, Largeur, Hauteur); // Dessiner le rectangle autour de l'image
 }
 
-int FenetrePrincipale::on_ImportImageButton_clicked()
+void FenetrePrincipale::on_ImportImageButton_clicked()
 {
-    // On ouvre la boîte de dialogue pour choisir un fichier .SQLite
+    // On ouvre la boîte de dialogue pour choisir un fichier .png.
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choix de l'image à importer"), "", tr("Fichiers png (*.png)"));
 
-    // Si aucun fichier n'a été choisi, on envoie un message d'erreur
+    // Si aucun fichier n'a été choisi, on envoie un message d'erreur.
     if (fileName.isEmpty())
     {
         QMessageBox messageBox;
         messageBox.critical(0,"Erreur","Vous n'avez pas choisi de fichier!");
         messageBox.setFixedSize(500,200);
-        return 0;
+        return;
     }
 
-    // Si un fichier a été choisi
+    // Si un fichier a été choisi.
     else
     {
         CheminImage = fileName;
+        Hauteur = 0;
+        Largeur = 0;
         update();
-
     }
-    return 1;
+    return;
 }
 
-int FenetrePrincipale::on_ExportImageButton_clicked()
+void FenetrePrincipale::on_ExportImageButton_clicked()
 {
-    /*// On ouvre la boîte de dialogue pour choisir un fichier .SQLite
-    //QString fileName = QFileDialog::getOpenFileName(this, tr("Choix du fichier à exporter"), "", tr("Fichiers png (*.png)"));
+    // On ouvre la boîte de dialogue pour choisir un répertoire pour stocker l'image.
+    QString folderPath = QFileDialog::getExistingDirectory(this, tr("Choisir un dossier"), "", QFileDialog::ShowDirsOnly);
 
-    // Si aucun fichier n'a été choisi, on envoie un message d'erreur
-    //if (fileName.isEmpty())
+    // Si aucun répertoire n'a été choisi, on envoie un message d'erreur.
+    if (folderPath.isEmpty())
     {
-
+        QMessageBox messageBox;
+        messageBox.critical(0,"Erreur","Vous n'avez pas choisi de répertoire!");
+        messageBox.setFixedSize(500,200);
+        return;
     }
 
-    // Si un fichier a été choisi
+    // Si un répertoire a été choisi
     else
     {
 
-    }*/
+    }
+    return;
 }
 
 void FenetrePrincipale::on_positionHautPushButton_clicked()
 {
-
+    if (PositionY > 0)
+    {
+        PositionY--;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_positionDroitePushButton_clicked()
 {
-
+    if (PositionX + Largeur < DroiteImage)
+    {
+        PositionX++;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_positionBasPushButton_clicked()
 {
-
+    if (PositionY + Hauteur < BasImage)
+    {
+        PositionY++;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_positionGauchePushButton_clicked()
 {
-
+    if (PositionX > 0)
+    {
+        PositionX--;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_hauteurPlusPushButton_clicked()
 {
-
+    if (PositionY + Hauteur < BasImage)
+    {
+        Hauteur++;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_hauteurMoinsPushButton_clicked()
 {
-
+    if (Hauteur > 0)
+    {
+        Hauteur--;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_largeurPlusPushButton_clicked()
 {
-
+    if (PositionX + Largeur < DroiteImage)
+    {
+        Largeur++;
+    }
+    update();
 }
 
 
 void FenetrePrincipale::on_largeurMoinsPushButton_clicked()
 {
-
+    if (Largeur > 0)
+    {
+        Largeur--;
+    }
+    update();
 }
 

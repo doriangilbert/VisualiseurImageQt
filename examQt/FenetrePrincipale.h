@@ -22,9 +22,9 @@ public:
 
 private slots:
     //** Methodes **//
-    int on_ImportImageButton_clicked();
+    void on_ImportImageButton_clicked();
 
-    int on_ExportImageButton_clicked();
+    void on_ExportImageButton_clicked();
 
     void on_positionHautPushButton_clicked();
 
@@ -46,6 +46,17 @@ private:
     Ui::FenetrePrincipale *ui;
 
     QString CheminImage;
+    int Hauteur;
+    int Largeur;
+    int PositionX;
+    int PositionY;
+
+    int HautImage;
+    int BasImage;
+    int GaucheImage;
+    int DroiteImage;
+
+    int Multiplicateur;
 };
 
 #endif // FENETREPRINCIPALE_H
