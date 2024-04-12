@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="ImportImageButton">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>500</y>
       <width>381</width>
       <height>41</height>
@@ -35,7 +35,7 @@
    <widget class="QPushButton" name="ExportImageButton">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>450</x>
       <y>500</y>
       <width>371</width>
       <height>41</height>
@@ -247,6 +247,40 @@
     </property>
     <property name="text">
      <string>Largeur</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pasVariationLabel">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>480</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pas de variation</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="pasVariationSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>510</y>
+      <width>141</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>850</number>
     </property>
    </widget>
   </widget>

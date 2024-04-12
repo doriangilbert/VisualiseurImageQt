@@ -115,9 +115,9 @@ void FenetrePrincipale::on_ExportImageButton_clicked()
 
 void FenetrePrincipale::on_positionHautPushButton_clicked()
 {
-    if (PositionY > 0)
+    if (PositionY > ui->pasVariationSpinBox->value())
     {
-        PositionY--;
+        PositionY -= ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -125,9 +125,9 @@ void FenetrePrincipale::on_positionHautPushButton_clicked()
 
 void FenetrePrincipale::on_positionDroitePushButton_clicked()
 {
-    if (PositionX + Largeur < DroiteImage)
+    if (PositionX + Largeur + ui->pasVariationSpinBox->value() < DroiteImage)
     {
-        PositionX++;
+        PositionX += ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -135,9 +135,9 @@ void FenetrePrincipale::on_positionDroitePushButton_clicked()
 
 void FenetrePrincipale::on_positionBasPushButton_clicked()
 {
-    if (PositionY + Hauteur < BasImage)
+    if (PositionY + Hauteur + ui->pasVariationSpinBox->value() - 1 < BasImage)
     {
-        PositionY++;
+        PositionY += ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -145,9 +145,9 @@ void FenetrePrincipale::on_positionBasPushButton_clicked()
 
 void FenetrePrincipale::on_positionGauchePushButton_clicked()
 {
-    if (PositionX > 0)
+    if (PositionX > ui->pasVariationSpinBox->value() - 1)
     {
-        PositionX--;
+        PositionX -= ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -155,9 +155,9 @@ void FenetrePrincipale::on_positionGauchePushButton_clicked()
 
 void FenetrePrincipale::on_hauteurPlusPushButton_clicked()
 {
-    if (PositionY + Hauteur < BasImage)
+    if (PositionY + Hauteur + ui->pasVariationSpinBox->value() - 1 < BasImage)
     {
-        Hauteur++;
+        Hauteur += ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -165,9 +165,9 @@ void FenetrePrincipale::on_hauteurPlusPushButton_clicked()
 
 void FenetrePrincipale::on_hauteurMoinsPushButton_clicked()
 {
-    if (Hauteur > 1)
+    if (Hauteur > ui->pasVariationSpinBox->value() + 1)
     {
-        Hauteur--;
+        Hauteur -= ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -175,9 +175,9 @@ void FenetrePrincipale::on_hauteurMoinsPushButton_clicked()
 
 void FenetrePrincipale::on_largeurPlusPushButton_clicked()
 {
-    if (PositionX + Largeur < DroiteImage)
+    if (PositionX + Largeur + ui->pasVariationSpinBox->value() - 1 < DroiteImage)
     {
-        Largeur++;
+        Largeur += ui->pasVariationSpinBox->value();
     }
     update();
 }
@@ -185,9 +185,9 @@ void FenetrePrincipale::on_largeurPlusPushButton_clicked()
 
 void FenetrePrincipale::on_largeurMoinsPushButton_clicked()
 {
-    if (Largeur > 1)
+    if (Largeur > ui->pasVariationSpinBox->value() + 1)
     {
-        Largeur--;
+        Largeur -= ui->pasVariationSpinBox->value();
     }
     update();
 }
