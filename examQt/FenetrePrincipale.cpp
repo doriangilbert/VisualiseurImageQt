@@ -43,6 +43,10 @@ void FenetrePrincipale::paintEvent(QPaintEvent *event)
     // Utiliser QPainter pour dessiner l'image sur le widget
     QPainter Painter(this);
     Painter.drawImage(0, 0, scaledImage);
+
+    // Dessiner un rectangle autour de l'image
+    Painter.setPen(Qt::red); // Définir la couleur du trait
+    Painter.drawRect(0, 0, scaledImage.width(), scaledImage.height()); // Dessiner le rectangle autour de l'image
 }
 
 int FenetrePrincipale::on_ImportImageButton_clicked()
