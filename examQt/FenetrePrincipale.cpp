@@ -165,7 +165,7 @@ void FenetrePrincipale::on_hauteurPlusPushButton_clicked()
 
 void FenetrePrincipale::on_hauteurMoinsPushButton_clicked()
 {
-    if (Hauteur > 0)
+    if (Hauteur > 1)
     {
         Hauteur--;
     }
@@ -185,7 +185,7 @@ void FenetrePrincipale::on_largeurPlusPushButton_clicked()
 
 void FenetrePrincipale::on_largeurMoinsPushButton_clicked()
 {
-    if (Largeur > 0)
+    if (Largeur > 1)
     {
         Largeur--;
     }
