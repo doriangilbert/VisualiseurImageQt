@@ -93,24 +93,47 @@ void FenetrePrincipale::on_ImportImageButton_clicked()
 
 void FenetrePrincipale::on_ExportImageButton_clicked()
 {
-    // On ouvre la boîte de dialogue pour choisir un répertoire pour stocker l'image.
-    QString folderPath = QFileDialog::getExistingDirectory(this, tr("Choisir un dossier"), "", QFileDialog::ShowDirsOnly);
+    // Vérifier si un chemin de fichier a été sélectionné
+    if (CheminImage.isEmpty())
+    {
+        QMessageBox messageBox;
+        messageBox.critical(0,"Erreur","Impossible d'exporter l'image : aucune image sélectionnée!");
+        messageBox.setFixedSize(500,200);
+        return;
+    }
 
-    // Si aucun répertoire n'a été choisi, on envoie un message d'erreur.
-    if (folderPath.isEmpty())
+    // Charger l'image à partir du chemin sélectionné
+    QImage originalImage(CheminImage);
+
+    // Vérifier si l'image a été chargée avec succès
+    if (originalImage.isNull()) {
+        qDebug() << "Erreur lors du chargement de l'image";
+        return;
+    }
+
+    // Copier la partie de l'image contenue dans le rectangle rouge
+    QImage exportedImage = originalImage.copy(PositionX, PositionY, Largeur, Hauteur);
+
+    // On ouvre la boîte de dialogue pour choisir un répertoire pour stocker l'image rogner.
+    QString savePath = QFileDialog::getSaveFileName(this, tr("Choisir un dossier"), "", tr("Images (*.png *.jpg *.bmp)"));
+    //QString savePath = QFileDialog::getExistingDirectory(this, tr("Choisir un dossier"), "", QFileDialog::ShowDirsOnly);
+    if (!savePath.isEmpty())
+    {
+        if (!exportedImage.save(savePath))
+        {
+            QMessageBox messageBox;
+            messageBox.critical(0,"Erreur","Erreur lors l'exportation!");
+            messageBox.setFixedSize(500,200);
+            return;
+        }
+    }
+    else
     {
         QMessageBox messageBox;
         messageBox.critical(0,"Erreur","Vous n'avez pas choisi de répertoire!");
         messageBox.setFixedSize(500,200);
         return;
     }
-
-    // Si un répertoire a été choisi
-    else
-    {
-
-    }
-    return;
 }
 
 void FenetrePrincipale::on_positionHautPushButton_clicked()
@@ -215,4 +238,3 @@ void FenetrePrincipale::on_largeurMoinsPushButton_clicked()
     // Mise à jour de l'interface
     update();
 }
-
