@@ -13,6 +13,6 @@ Projet de programmation d'une application de visualisation d'images. Projet réa
 
 ### Contenu
 
-Cette application permet de visualiser une image et d'en sélectionner une partie afin de l'exporter.
+Cette application permet d'importer une image, de la visualiser et d'en sélectionner une partie afin de l'exporter.
 
 Cette application a été développée en C++ avec le framework Qt.
